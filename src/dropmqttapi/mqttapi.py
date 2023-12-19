@@ -94,6 +94,38 @@ class DropAPI:
         """Return cartridge 3 life remaining."""
         return self.get_int_val("cart3")
 
+    def leak_detected(self) -> int | None:
+        """Return leak detected value."""
+        return self.get_int_val("leak")
+
+    def notification_pending(self) -> int | None:
+        """Return notification pending value."""
+        return self.get_int_val("notif")
+
+    def salt_low(self) -> int | None:
+        """Return salt low value."""
+        return self.get_int_val("salt")
+
+    def reserve_in_use(self) -> int | None:
+        """Return reserve in use value."""
+        return self.get_int_val("resInUse")
+
+    def pump_status(self) -> int | None:
+        """Return pump status value."""
+        return self.get_int_val("pump")
+
+    def water(self) -> int | None:
+        """Return water state value."""
+        return self.get_int_val("water")
+
+    def bypass(self) -> int | None:
+        """Return bypass state value."""
+        return self.get_int_val("bypass")
+
+    def protect_mode(self) -> int | None:
+        """Return protect mode state value."""
+        return self.get_string_val("pMode")
+
     def get_int_val(self, key: str) -> int | None:
         """Return the specified API value as an int or None if it is unknown."""
         if key in self._data_cache and self._data_cache[key] is not None:
@@ -105,3 +137,18 @@ class DropAPI:
         if key in self._data_cache and self._data_cache[key] is not None:
             return float(self._data_cache[key])
         return None
+
+    def get_string_val(self, key: str) -> str | None:
+        """Return the specified API value as a string or None if it is unknown."""
+        if key in self._data_cache and self._data_cache[key] is not None:
+            return str(self._data_cache[key])
+        return None
+
+    def set_water_message(self, value: int) -> str:
+        return f'{{"water":{value}}}'
+
+    def set_bypass_message(self, value: int) -> str:
+        return f'{{"bypass":{value}}}'
+
+    def set_protect_mode_message(self, value: str) -> str:
+        return f'{{"pMode":"{value}"}}'

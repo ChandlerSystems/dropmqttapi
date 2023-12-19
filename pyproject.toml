@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dropmqttapi"
-version = "1.0.0"
+version = "1.0.1"
 description = "MQTT API for DROP water management products"
 readme = "README.md"
 authors = [{ name = "Patrick Frazer", email = "pfrazer@chandlersystemsinc.com" }]
