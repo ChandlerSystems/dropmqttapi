@@ -11,7 +11,11 @@ _LOGGER = logging.getLogger(__name__)
 class DropAPI:
     """Class for parsing MQTT data messages for DROP devices."""
 
-    _data_cache: dict[str, Any] = {}
+    _data_cache: dict[str, Any]
+    
+    def __init__(self) -> None:
+        """Initialize the DROP API."""
+        self._data_cache = {}
 
     def parse_drop_message(
         self, topic: str, payload: str | bytes, qos: int, retain: bool
